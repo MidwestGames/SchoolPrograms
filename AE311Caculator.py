@@ -40,7 +40,7 @@ def Isentropic_TR(machNo):
     temperatureRatio = ( 1 + 0.2 * (machNo**2) )
     return temperatureRatio
 def PMFNu(M):
-    PMF = sqrt(6) * atan(sqrt((1/6) * (M**2 - 1))) - atan(M**2 - 1)
+    PMF = sqrt(6) * atan(sqrt((1/6) * (M**2 - 1))) - atan(sqrt(M**2 - 1))
     return PMF
 
 def Calulator(number):
@@ -113,7 +113,7 @@ def Calulator(number):
             theta = radians(float(input("What is the deflection angle of the shock >> ")))
             #This finds M2 from root function
             def Nu(M):
-                PMF = sqrt(6) * atan(sqrt((1/6) * (M**2 - 1))) - atan(M**2 - 1)
+                PMF = sqrt(6) * atan(sqrt((1/6) * (M**2 - 1))) - atan(sqrt(M**2 - 1))
                 return PMF - nu2
             nu2 = 0
             nu1 = Nu(M1)
@@ -144,7 +144,7 @@ def Calulator(number):
             #Calculate Forward and Rearward Mach Lines
 
             FML = asin(1 / M1)
-            RML = FML - theta
+            RML = asin(1 / M2)
 
             print("Forward Mach Line = %.2f" %(degrees(FML)))
             print("Rearward Mach Line = %.2f\n" %(degrees(RML)))
@@ -168,4 +168,5 @@ while(more == 1):
         2 - Normal Shock Calculator\n\
         3 - Oblique Shock Calculator\n\
         4 - Prandtl-Meyer Function Solver\n\
+        5 - Prandtl-Meyer Value Calculator\n\
         What type of calculator do you need >> ")))
