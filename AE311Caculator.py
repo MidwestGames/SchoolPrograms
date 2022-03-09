@@ -113,7 +113,7 @@ def Calulator(number):
             theta = radians(float(input("What is the deflection angle of the shock >> ")))
             #This finds M2 from root function
             def Nu(M):
-                PMF = sqrt(6) * atan(sqrt((1/6) * (M**2 - 1))) - atan(sqrt(M**2 - 1))
+                PMF = sqrt(6.0) * atan(sqrt((M**2 - 1.0) / 6.0)) - atan(sqrt(M**2 - 1.0))
                 return PMF - nu2
             nu2 = 0
             nu1 = Nu(M1)
