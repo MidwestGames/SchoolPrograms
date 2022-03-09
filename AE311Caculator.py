@@ -40,7 +40,7 @@ def Isentropic_TR(machNo):
     temperatureRatio = ( 1 + 0.2 * (machNo**2) )
     return temperatureRatio
 def PMFNu(M):
-    PMF = sqrt(6) * atan(sqrt((1/6) * (M**2 - 1))) - atan(sqrt(M**2 - 1))
+    PMF = sqrt(6.) * atan(sqrt((M**2 - 1) / 6.)) - atan(sqrt(M**2 - 1.))
     return PMF
 
 def Calulator(number):
@@ -152,10 +152,10 @@ def Calulator(number):
             return 0
         case 5:
             M = float(input("What is the Mach Number given >> "))
-            nu = 0
-
             nu = PMFNu(M)
-            print("Nu = %.4f" %(degrees(nu)))
+            print("Nu = %.4f rad" %(nu))
+            print("Nu = %.4f deg" %(degrees(nu)))
+
             return 0
 
 more = 1
