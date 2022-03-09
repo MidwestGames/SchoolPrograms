@@ -110,21 +110,21 @@ def Calulator(number):
         case 4:
 
             M1 = float(input("What is the Mach number of the leading edge >> "))
-            theta = radians(float(input("What is the deflection angle of the shock >> ")))
+            theta = float(input("What is the deflection angle of the shock >> "))
             #This finds M2 from root function
             def Nu(M):
                 PMF = sqrt(6.0) * atan(sqrt((M**2 - 1.0) / 6.0)) - atan(sqrt(M**2 - 1.0))
                 return PMF - nu2
-            nu2 = 0
+            nu2 = 0.0
             nu1 = Nu(M1)
-            nu2 = nu1 + theta
+            nu2 = nu1 + (theta * numpy.pi/180)
 
             M2 = float(spo.fsolve(Nu, M1))
 
             print("Nu 1 = %.4f" %(nu1))
             print("Nu 2 = %.4f\n" %(nu2))
 
-            print("Downstream Mach Number = %.2f" %(M2))
+            print("Downstream Mach Number = %.5f" %(M2))
 
             #This finds the ratios needed
 
