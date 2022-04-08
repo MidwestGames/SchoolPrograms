@@ -3,13 +3,7 @@ import numpy
 import scipy.optimize as spo
 from math import degrees, radians, sqrt, tan, asin, sin, atan
 
-choice = int(input(("Aer E 311 Calculator\n\
-1 - Isentropic Ratio Calculator\n\
-2 - Normal Shock Calculator\n\
-3 - Oblique Shock Calculator\n\
-4 - Prandtl-Meyer Function Solver\n\
-5 - Prandtl-Meyer Value Calculator\n\
-What type of calculator do you need >> ")))
+choice = int(input(("Aer E 311 Calculator\n1 - Isentropic Ratio Calculator\n2 - Normal Shock Calculator\n3 - Oblique Shock Calculator\n4 - Prandtl-Meyer Function Solver\n5 - Prandtl-Meyer Value Calculator\nWhat type of calculator do you need >> ")))
 #Formulas
 
 def ObliqueShock_PR(machNo, beta):
@@ -39,6 +33,9 @@ def Isentropic_pR(machNo):
 def Isentropic_TR(machNo):
     temperatureRatio = ( 1 + 0.2 * (machNo**2) )
     return temperatureRatio
+def Isentropic_AR(machNo):
+    areaRatio = (1/machNo**2) * ( (5/6) * (1 + (1/5) * machNo**2) ) ** 6
+    return areaRatio
 def PMFNu(M):
     PMF = sqrt(6.) * atan(sqrt((M**2 - 1) / 6.)) - atan(sqrt(M**2 - 1.))
     return PMF
@@ -46,16 +43,38 @@ def PMFNu(M):
 def Calulator(number):
     match number:
         case 1:
-            M1 = float(input("What is the upstream Mach number >> "))
-            #This calculates the Ratios given a Mach number
-            pressureRatio = Isentropic_PR(M1)
-            temperatureRatio = Isentropic_TR(M1)
-            densityRatio = Isentropic_pR(M1)
+            knownRatio = float(input("1 -- Mach Number\n2 -- P0/P\n3 -- p0/p\n4 -- T0/T\n5 -- A/A*\nWhat constant number do you have >> "))
 
+            match knownRatio:
+                case 1: #Mach Number
+                    machNumber = float(input("What is the Mach number >> "))
 
+                    pressureRatio = Isentropic_PR(machNumber)
+                    densityRatio = Isentropic_pR(machNumber)
+                    temperatureRatio = Isentropic_TR(machNumber)
+                    areaRatio = Isentropic_AR(machNumber)
+                    return 0
+                case 2: #Pressure Ratio
+                    pressureRatio = float(input("What is the pressure ratio >> "))
+
+                    return 0
+                case 3: #Density Ratio
+                    densityRatio = float(input("What is the density ratio >> "))
+
+                    return 0
+                case 4: #Temperature Ratio
+                    temperatureRatio = float(input("What is the temperature ratio >> "))
+
+                    return 0
+                case 5: #Area Ratio
+                    areaRatio = float(input("What is the area ratio"))
+                    
+                    return 0
+            print("Mach Number M = %.4f" %(machNumber))
             print("Pressure Ratio P0/P1 = %.4f" %(pressureRatio))
             print("Density Ratio p0/p1 = %.4f" %(densityRatio))
             print("Temperature Ratio T0/T1 = %.4f\n" %(temperatureRatio))
+            print("Area Ratio = %.4f" %(areaRatio))
 
             return 0
         case 2:
