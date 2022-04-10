@@ -99,13 +99,41 @@ def Calulator(number):
                     areaRatio = Isentropic_AR(machNumber)
 
                 case 5: #Area Ratio
-                    areaRatio = float(input("What is the area ratio"))
+                    areaRatio = float(input("What is the area ratio >> "))
 
                     #TODO
                     #Solve for Mach Number
+                    def A2M(machNo):
+                        xx = ((5+machNo**2)**3 / (216 * machNo))
+                        return xx - areaRatio
+                    
+                    machNumberSub = float(spo.fsolve(A2M, 0.1))
+                    machNumberSup = float(spo.fsolve(A2M, 1.1))
 
-                    #TODO
                     #Solve for other ratios
+                    pressureRatioSub = Isentropic_PR(machNumberSub)
+                    densityRatioSub = Isentropic_pR(machNumberSub)
+                    temperatureRatioSub = Isentropic_TR(machNumberSub)
+
+                    pressureRatioSup = Isentropic_PR(machNumberSup)
+                    densityRatioSup = Isentropic_pR(machNumberSup)
+                    temperatureRatioSup = Isentropic_TR(machNumberSup)
+
+                    print("Subsonic Conditions")
+                    print("Mach Number M = %.4f" %(machNumberSub))
+                    print("Pressure Ratio P0/P1 = %.4f" %(pressureRatioSub))
+                    print("Density Ratio p0/p1 = %.4f" %(densityRatioSub))
+                    print("Temperature Ratio T0/T1 = %.4f" %(temperatureRatioSub))
+                    print("Area Ratio = %.4f\n" %(areaRatio))
+
+                    print("Supersonic Conditions")
+                    print("Mach Number M = %.4f" %(machNumberSup))
+                    print("Pressure Ratio P0/P1 = %.4f" %(pressureRatioSup))
+                    print("Density Ratio p0/p1 = %.4f" %(densityRatioSup))
+                    print("Temperature Ratio T0/T1 = %.4f" %(temperatureRatioSup))
+                    print("Area Ratio = %.4f\n" %(areaRatio))
+
+                    return 0
 
             print("Mach Number M = %.4f" %(machNumber))
             print("Pressure Ratio P0/P1 = %.4f" %(pressureRatio))
